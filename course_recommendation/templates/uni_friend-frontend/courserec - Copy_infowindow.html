@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="course recommendation sjsu services information campus navigation uni friend">
+<meta name="author" content="Satya Keerthi Kotte">
+<title>Uni Friend- Course Recommendation</title>
+
+<!-- Bootstrap Core CSS -->
+<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+<!-- Plugin CSS -->
+<link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="lib/simple-line-icons/css/simple-line-icons.css">
+<link rel="stylesheet" href="lib/device-mockups/device-mockups.min.css">
+
+<!-- Theme CSS -->
+<link href="css/new-age.min.css" rel="stylesheet">
+
+<!--Fav Icon-->
+    <link rel="icon" href="img/UniFriend.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top">
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+  <div class="container"> 
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i> </button>
+      <a class="navbar-brand page-scroll" href="#page-top"><!--<img alt="logo" class="img-responsive" src="img/logo_tran.png">--><i class="fa fa-graduation-cap"></i> UNI FRIEND</a> </div>
+    
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li> <a class="page-scroll" href="#jobs">Jobs</a> </li>
+        <li> <a class="page-scroll" href="#reviews">Reviews</a> </li>
+        <li> <a class="page-scroll" href="#contact">Contact</a> </li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse --> 
+  </div>
+  <!-- /.container-fluid --> 
+</nav>
+<header>
+  <div class="container">
+    <div class="row"> 
+      <!--<div class="col-sm-1">&nbsp;</div>-->
+      <div class="col-sm-12">
+        <div class="device-container" style="max-height:none;">
+          <div class="device-mockup imac">
+            <div class="device" style="height:100%; align-content:center; align-items:center;align-self:center">
+              <div class="screen">
+                <div id="chartdiv" style="height: 100%; width: 100%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--<div class="col-sm-1">&nbsp;</div>--> 
+      
+    </div>
+  </div>
+</header>
+<section id="jobs" class="download bg-success text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12" style="width:100%">
+        <h2 class="section-heading" id="selStates">Jobs in USA</h2>
+        <div id="map" style="height: 700px; width: 100%; background-color: #000000"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="info" class="features">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+          <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+         
+            <div id="carousel1" class="carousel slide" data-ride="carousel" data-interval="false">
+              <ol class="carousel-indicators hidden-xs">
+                <li data-target="#carousel1" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel1" data-slide-to="1"></li>
+                
+              </ol>
+              <div class="carousel-inner">
+                <div class="item active">
+                <div class="section-heading">
+                <h3 id="jobId">Job Title:</h3>
+                <hr>
+                <p id="jobDesc"></p>
+                </div>
+                </div>
+                <div class="item">
+                <div class="section-heading">
+                <h3 id="recCor">Recommended Courses:</h3>
+                <hr>
+                <div class="checkbox">
+                <label id="lblRecCor"><input type="checkbox" id="enrolledCheck" value="">Recommended course1
+                </label><br>
+                <label id="lblRecCor2"><input type="checkbox" id="enrolledCheck2" value="">Recommended course1
+                </label></div>
+                </div>
+                
+                </div>
+                
+              </div>
+              
+              <a class="left carousel-control" href="#carousel1" data-slide="prev">
+              <span class="icon-prev"></span></a>
+              <a class="right carousel-control" href="#carousel1" data-slide="next">
+              <span class="icon-next"></span></a>
+              </div>
+         
+          </div>
+          </div>
+          </div>
+ 
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="features">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="section-heading">
+          <h2>Most applied jobs</h2>
+          <div class="row">
+            <div class="box">
+                <div class="col-lg-12 text-center">
+         
+            <div id="carousel1" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators hidden-xs">
+                <li data-target="#carousel1" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel1" data-slide-to="1"></li>
+                <li data-target="#carousel1" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="item active"> <img src="images/Carousel_Placeholder.png" alt="First slide image" class="img-responsive img-full" style="min-width:100%;"> </div>
+                <div class="item"><img src="images/Carousel_Placeholder.png" alt="Second slide image" class="img-responsive img-full" style="min-width:100%;"> </div>
+                <div class="item"><img src="images/Carousel_Placeholder.png" alt="Third slide image" class="img-responsive img-full" style="min-width:100%;"> </div>
+              </div>
+              
+              <a class="left carousel-control" href="#carousel1" data-slide="prev">
+              <span class="icon-prev"></span></a>
+              <a class="right carousel-control" href="#carousel1" data-slide="next">
+              <span class="icon-next"></span></a>
+              </div>
+         
+          </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="cta">
+  <div class="cta-content">
+    <div class="container">
+      <h2>Happy<br>
+         to<br>
+         Help</h2>
+      <a href="index.html#features" class="btn btn-outline btn-xl page-scroll">Check out our other features!</a> </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+<section id="contact" class="contact bg-primary">
+  <div class="container">
+    <h2>We <i class="fa fa-heart"></i> to <i class="fa fa-commenting"></i> from you!</h2>
+    <ul class="list-inline list-social">
+      <li class="social-facebook"> <a href="https://www.linkedin.com/in/satya-keerthi-kotte"><i class="fa fa-linkedin"></i></a> </li>
+      <li class="social-twitter"> <a href="https://twitter.com/satyakeerthi1"><i class="fa fa-twitter"></i></a> </li>
+      <li class="social-facebook"> <a href="https://www.facebook.com/satya.keerthi"><i class="fa fa-facebook"></i></a> </li>
+    </ul>
+  </div>
+</section>
+<footer>
+  <div class="container"> <img src="img/UniFriend.png" alt="" style="display:inline; border-radius:10px;">
+    <hr>
+    <p>&copy;  2017 Uni Friend. All Rights Reserved.</p>
+  </div>
+  <a id="to-top" href="#top" class=" page-scroll btn btn-dark btn-lg "><i class="fa fa-chevron-up fa-fw fa-1x"></i></a> </footer>
+  
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <ul class="nav nav-tabs nav-justified">
+          <li class="active"><a href="#tab1" data-toggle="tab" style="line-height: 35px;">Job Info</a></li>
+          <li><a href="#tab2" data-toggle="tab" style="line-height: 35px;">Recommended Courses</a></li>
+        </ul>
+        <div class="tab-content">
+          <div id="tab1" class="tab-pane fade in active">
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-1" style="align:center; "> <i class="glyphicon glyphicon-briefcase"></i> </div>
+                <div class="col-md-11">
+                  <label> Job Title: </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-1">&nbsp;</div>
+                <div class="col-md-11"> <span> Dummy Title</span> </div>
+              </div>
+              <div class="row">
+                <div class="col-md-1" style="align:center; "> <i class="glyphicon glyphicon-paperclip"></i> </div>
+                <div class="col-md-11">
+                  <label> Job Title: </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-1">&nbsp;</div>
+                <div class="col-md-11"> <span> Prepare client portfolio to generate interest of prospective investors.
+                  Review client specific documents such as non-disclosure agreements, marketing materials, and financial statements.
+                  Review portfolio on a periodically to ensure all current information is on file.
+                  Participate in team efforts to achieve departmental and company goals.
+                  Comply with all policies, practices, and procedures and report all unsafe activities to firm partners
+                  Perform other duties as assigned
+                  Ability to read, analyze and interpret general business periodicals, professional journals, technical procedures, or governmental regulations. Ability to write reports, business correspondence, and procedure manuals. Ability to effectively present information and respond to questions from groups of managers, clients, customers and the general public.
+                  Ability to define problems, collect data, establish facts, and draw valid conclusions.
+                  Ability to calculate figures and amounts such as discounts, interest, commissions, proportions, percentages, area, circumference and volume.
+                  Proficient personal computer skills include electronic e-mail, recordkeeping, routine database activity, word processing, spreadsheet, etc.
+                  Ability to handle multiple tasks simultaneously.
+                  Ability to handle a rigorous schedule of deadlines.
+                  Experienced in professional business writing preferred; including writing business plans and information memorandums.
+                  <li> Experience working with entrepreneurs is a plus.</li>
+                  <li> Prioritization and organization skills.</li>
+                  Proficient in financial-modeling, financial-analysis, and Excel.
+                  Commercial understanding and awareness of business and operations in various industries.
+                  Possess valid and current driver license.
+                  No personal history of enforcement actions by the Securities Exchange Commission, FINRA, or any state securities regulatory bodies.
+                  Bachelor's degree or advanced degree in Finance, Marketing, or Accounting or an unrelated degree with significant work experience in one or more of these fields.
+                  Availability for occasional travel and working outside of normal operating hours.</span> </div>
+              </div>
+            </div>
+          </div>
+          <div id="tab2" class="tab-pane fade">
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-1" style="align:center; "> <i class="glyphicon glyphicon-book"></i> </div>
+                <div class="col-md-11">
+                  <label> Courses List: </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-1">&nbsp;</div>
+                <div class="col-md-11">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" placeholder="Already enrolled" value="">
+                      Course A</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-1">&nbsp;</div>
+                <div class="col-md-11">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" placeholder="Already enrolled" value="">
+                      Course B</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-1">&nbsp;</div>
+                <div class="col-md-11">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" placeholder="Already enrolled" value="">
+                      Course C</label>
+                  </div>
+                </div>
+              </div>
+              <aside> <span class="alert-info">Please check the checkbox if you have already enrolled to the course.</span> </aside>
+              <form role="form" id="emailForm" style="display:none" >
+                <div class="form-group">
+                <br>
+                <h4>Plese input your Email-ID for further recommendations!</h4>
+                  <div class=" row left-inner-addon"> 
+                  <div class="col-md-1">
+                  <i class="glyphicon glyphicon-envelope"></i></div>
+                  <div class="col-md-11">
+                    <input type="text" class="form-control" id="email" placeholder="Email">
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-success btn-block"> Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<!-- jQuery --> 
+<!-- <script src="lib/jquery/jquery.min.js"></script> --> 
+<script src="js/jquery-1.11.3.min.js"></script> 
+
+<!-- Bootstrap Core JavaScript --> 
+<script src="lib/bootstrap/js/bootstrap.min.js"></script> 
+
+<!-- Plugin JavaScript --> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> 
+
+<!-- Theme JavaScript --> 
+<script src="js/new-age.min.js"></script> 
+<!--<script>
+//#to-top button appears after scrolling
+    var fixed = false;
+    $(document).scroll(function() {
+		
+        if ($(this).scrollTop() > 250) {
+			
+            if (!fixed) {
+				
+                fixed = true;
+                // $('#to-top').css({position:'fixed', display:'block'});
+                $('#to-top').show("slow", function() {
+					$('#to-top').css({
+                        position: 'fixed',
+                        display: 'block'
+					});
+                });
+            }
+        } else {
+            if (fixed) {
+                fixed = false;
+                $('#to-top').hide("slow", function() {
+                    $('#to-top').css({
+                        display: 'none'
+                    });
+                });
+            }
+        }
+    });
+</script> --> 
+
+<!-- AmChart JS --> 
+<script src="https://www.amcharts.com/lib/3/ammap.js"></script> 
+<script src="https://www.amcharts.com/lib/3/maps/js/usaLow.js"></script> 
+<script
+		src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script> 
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script> 
+<script src="https://www.amcharts.com/lib/3/themes/dark.js"></script> 
+<script src="https://www.amcharts.com/lib/3/themes/chalk.js"></script> <!--Amcharts--> 
+<script>
+		var map = AmCharts
+				.makeChart(
+						"chartdiv",
+						{
+							"type" : "map",
+							"theme" : "chalk",
+							"panEventsEnabled" : true,
+							"backgroundColor" : "#ccccff",
+							"backgroundAlpha" : 1,
+							"dataProvider" : {
+								"map" : "usaLow",
+								"getAreasFromMap" : true
+							},
+							"smallMap" : {},
+							"areasSettings" : {
+								"autoZoom" : true,
+								"color" : "#dd99ff",
+								"colorSolid" : "#ff8080",
+								"selectedColor" : "#ff8080",
+								"outlineColor" : "#666666",
+								"rollOverColor" : "#ffb3e6",
+								"rollOverOutlineColor" : "#FFFFFF",
+								"selectable" : true
+							},
+							"listeners" : [ {
+								"event" : "clickMapObject",
+								"method" : function(event) {
+									// deselect the area by assigning all of the dataProvider as selected object
+									map.selectedObject = map.dataProvider;
+
+									// toggle showAsSelected
+									event.mapObject.showAsSelected = !event.mapObject.showAsSelected;
+
+									// bring it to an appropriate color
+									map.returnInitialColor(event.mapObject);
+
+									// let's build a list of currently selected states
+									var states = [];
+									for ( var i in map.dataProvider.areas) {
+										var area = map.dataProvider.areas[i];
+										if (area.showAsSelected) {
+											states.push(area.title);
+										}
+									}
+									//var textArea=document.getElementById('selStates');
+									//textArea.innerHtml=states.toString();
+									if (states.toString() == "") {
+										$("#selStates").html(
+												"Jobs in USA");
+									} else {
+										$("#selStates").html("Jobs in "+ states.toString());
+									}
+								}
+
+							} ],
+							"export" : {
+								"enabled" : true
+							}
+						});
+	</script> 
+<!--Google Maps--> 
+<script>
+		function initMap() {
+			var uluru = {
+				lat : 37.09024,
+				lng : -95.712891
+			};
+			var map = new google.maps.Map(document.getElementById('map'), {
+				zoom : 4,
+				center : uluru
+			});
+			//map.data.loadGeoJson('loc.json');
+			var marker = new google.maps.Marker({
+				position : uluru,
+				map : map,
+				title: 'JOb'
+				
+			});
+			
+			
+			var infoDIv='<div class="container">'+
+			'<div id="carousel1" class="carousel slide" data-ride="carousel" data-interval="false">'+
+              '<ol class="carousel-indicators hidden-xs">'+
+                '<li data-target="#carousel1" data-slide-to="0" class="active"></li>'+
+                '<li data-target="#carousel1" data-slide-to="1"></li>'+
+                
+              '</ol>'+
+              '<div class="carousel-inner">'+
+                '<div class="item active">'+
+                '<div class="section-heading">'+
+                '<h3 id="jobId">Job Title:</h3>'+
+                '<hr>'+
+                '<p id="jobDesc"></p>'+
+                '</div>'+
+                '</div>'+
+                '<div class="item">'+
+                '<div class="section-heading">'+
+                '<h3 id="recCor">Recommended Courses:</h3>'+
+                '<hr>'+
+                '<div class="checkbox">'+
+                '<label id="lblRecCor"><input type="checkbox" id="enrolledCheck" value="">Recommended'+ 	                'course1</label><br>'+
+                '<label id="lblRecCor2"><input type="checkbox" id="enrolledCheck2" value="">Recommended'+ 	                'course1 </label></div>'+
+                '</div>'+
+                '</div>'+
+              '</div>'+
+              '<a class="left carousel-control" href="#carousel1" data-slide="prev">'+
+              '<span class="icon-prev"></span></a>'+
+              '<a class="right carousel-control" href="#carousel1" data-slide="next">'+
+              '<span class="icon-next"></span></a>'+
+			  '</div>'+
+              '</div>';
+
+var infowindow = new google.maps.InfoWindow({
+    content: infoDIv
+  });
+   marker.addListener('click', function() {
+	   $('#myModal').modal('show'); 
+	   //infowindow.open(map, marker);
+  });
+			
+		}
+		
+		$(':checkbox').change(function() {
+
+        $('#emailForm').css('display','block');
+
+});
+	</script> 
+<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2_EK0wdicPt2S1AZhxBt1Alt3C8TG5aY&callback=initMap">
+    </script>
+</body>
+</html>

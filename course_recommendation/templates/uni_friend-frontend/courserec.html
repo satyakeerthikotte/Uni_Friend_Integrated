@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="course recommendation sjsu services information campus navigation uni friend">
+    <meta name="author" content="Satya Keerthi Kotte">
+    <title>Uni Friend- Course Recommendation</title>
+
+    {% load static %}
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/simple-line-icons/css/simple-line-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/device-mockups/device-mockups.min.css' %}">
+
+    <!-- Theme CSS -->
+    <link href="{% static 'css/new-age.min.css' %}" rel="stylesheet">
+
+    <!--Fav Icon-->
+    <link rel="icon" href="{% static 'img/UniFriend.ico' %}">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .amcharts-chart-div a {display:none !important;}
+    </style>
+
+</head>
+
+<body id="page-top">
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i> </button>
+            <a class="navbar-brand page-scroll" href="#page-top"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+			<a class="navbar-brand page-scroll" href="{% url 'course_recommendation:index' %}"><i class="fa fa-graduation-cap"></i> UNI FRIEND</a>
+			
+
+			</div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li> <a class="page-scroll" href="#jobs">Jobs</a> </li>
+                <li> <a class="page-scroll" href="#trendingjobs">Job Trends</a> </li>
+                <li> <a class="page-scroll" href="#contact">Contact</a> </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<header>
+    <div class="container">
+        <div class="row">
+            <!--<div class="col-sm-1">&nbsp;</div>-->
+            <div class="col-sm-12">
+                <div class="device-container" style="max-height:none;">
+                    <div class="device-mockup imac">
+                        <div class="device" style="height:100%; align-content:center; align-items:center;align-self:center">
+                            <div class="screen">
+                                <div id="chartdiv" style="height: 100%; width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="col-sm-1">&nbsp;</div>-->
+
+        </div>
+    </div>
+</header>
+
+<section id="jobs" class="download bg-success text-center">
+    <div class="container" >
+        <div class="row">
+            <div class="col-md-12" style="width:100%">
+                <h2 class="section-heading" id="selStates">Jobs in USA</h2>
+
+                <div id="jobFilter_dd" class="dropdown" style="text-align: left;padding: 7px;">
+                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" style="background: #fff;">
+                        <h3 style="background: #fff;">Job's Filter<span class="caret"></span></h3></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" id="dropdownClick" data-name=""><img src="{% static 'images/all.png' %}" alt="all"> All</a> </li>
+                        {% for domain in domain_names_count %}
+                            <li><a href="#" id="dropdownClick"  data-name="{{ domain.domain }}">
+                                <img src={% with 'images/'|add:domain.domain|add:'.png' as image_static %}
+                                    "{% static image_static %}"
+                                {% endwith %} alt="{{ domain.domain }}" >
+                                {{ domain.domain }} ({{ domain.domainCount }})</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="googleMapDiv">
+                    <div class="map" id="map" style="height: 700px; width: 100%; background-color: #000000"></div>
+                    {#                    <div id="mapInfo" class="float-left">#}
+                    {#                        <h3>#}
+                    {#                            Job's Info#}
+                    {#                        </h3>#}
+                    {#                    </div>#}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="trendingjobs" class="text-center">
+    <div class="container" >
+        <div class="row">
+            <div class="col-md-12" style="width:100%">
+                <h2 class="section-heading" id="selStates">Job Trends</h2>
+                <div id="piechart_3d" style="height: 500px;"></div>
+
+
+
+
+                <div id="chartdivTrendJobs"  style="height: 500px;"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="cta">
+    <div class="cta-content">
+        <div class="container">
+            <h2>Happy<br>
+                to<br>
+                Help</h2>
+            <a href="{% url 'course_recommendation:index' %}" class="btn btn-outline btn-xl page-scroll">Check out our other features!</a> </div>
+    </div>
+    <div class="overlay"></div>
+</section>
+<section id="contact" class="contact bg-primary">
+    <div class="container">
+        <h2>We <i class="fa fa-heart"></i> to <i class="fa fa-commenting"></i> from you!</h2>
+        <ul class="list-inline list-social">
+            <li class="social-facebook"> <a href="https://www.linkedin.com/in/satya-keerthi-kotte" target="_blank"><i class="fa fa-linkedin"></i></a> </li>
+            <li class="social-twitter"> <a href="https://twitter.com/satyakeerthi1" target="_blank"><i class="fa fa-twitter"></i></a> </li>
+            <li class="social-facebook"> <a href="https://www.facebook.com/satya.keerthi" target="_blank"><i class="fa fa-facebook"></i></a> </li>
+        </ul>
+    </div>
+</section>
+<footer>
+    <div class="container"> <img src="{% static 'img/UniFriend.png' %}" alt="" style="display:inline; border-radius:10px;">
+        <hr>
+        <p>&copy;  2017 Uni Friend. All Rights Reserved.</p>
+    </div>
+    <a id="to-top" href="#top" class=" page-scroll btn btn-dark btn-lg "><i class="fa fa-chevron-up fa-fw fa-1x"></i></a> </footer>
+
+<div class="modal fade" id="newPagePopUp" tabindex="-1" role="dialog" aria-labelledby="newPagePopUpLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="popBody">
+        </div>
+    </div>
+</div>
+
+
+
+<!-- jQuery -->
+<!-- <script src="lib/jquery/jquery.min.js"></script> -->
+<script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
+
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+<!-- Theme JavaScript -->
+<script src="{% static 'js/new-age.min.js' %}"></script>
+
+{#<!--Select-->#}
+{#<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>#}
+{#<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>#}
+{#<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>#}
+
+
+<!-- AmChart JS -->
+<script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+<script src="https://www.amcharts.com/lib/3/maps/js/usaLow.js"></script>
+<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+<script src="https://www.amcharts.com/lib/3/themes/dark.js"></script>
+<script src="https://www.amcharts.com/lib/3/themes/chalk.js"></script>
+
+<!--Amcharts Trend Jobs-->
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+
+
+<!--Google Maps-->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2_EK0wdicPt2S1AZhxBt1Alt3C8TG5aY"></script>
+
+
+<!--Amcharts script-->
+
+<script>
+    var heatmap = AmCharts
+            .makeChart(
+                    "chartdiv",
+                    {
+                        "type" : "map",
+                        "theme" : "chalk",
+                        "panEventsEnabled" : true,
+                        "backgroundColor" : "#ccccff",
+                        "backgroundAlpha" : 1,
+                        "dataProvider" : {
+                            "map" : "usaLow",
+                            "getAreasFromMap" : true
+                        },
+                        "smallMap" : {},
+                        "areasSettings" : {
+                            "autoZoom" : true,
+                            "color" : "#dd99ff",
+                            "colorSolid" : "#ff8080",
+                            "selectedColor" : "#ff8080",
+                            "outlineColor" : "#666666",
+                            "rollOverColor" : "#ffb3e6",
+                            "rollOverOutlineColor" : "#FFFFFF",
+                            "selectable" : true
+                        },
+                        "listeners" : [ {
+                            "event" : "clickMapObject",
+                            "method" : function(event) {
+                                // deselect the area by assigning all of the dataProvider as selected object
+                                heatmap.selectedObject = heatmap.dataProvider;
+                                // toggle showAsSelected
+                                event.mapObject.showAsSelected = !event.mapObject.showAsSelected;
+                                // bring it to an appropriate color
+                                heatmap.returnInitialColor(event.mapObject);
+                                // let's build a list of currently selected states
+                                {#                        var states = [];#}
+                                var states;
+                                for ( var i in heatmap.dataProvider.areas) {
+                                    var area = heatmap.dataProvider.areas[i];
+
+                                    if (area.showAsSelected) {
+                                        {#                                states.push( area.id.split('-').pop());#}
+                                        states=( area.title);
+                                    }
+                                }
+                                //var textArea=document.getElementById('selStates');
+                                //textArea.innerHtml=states.toString();
+                                if (states.toString() == "") {
+                                    $("#selStates").html(
+                                            "Jobs in USA");
+                                } else {
+                                    $("#selStates").html("Jobs in "+ states.toString());
+
+// toggle showAsSelected
+                                    event.mapObject.showAsSelected = !event.mapObject.showAsSelected;
+                                    var u="{% url 'course_recommendation:jobSelStates' 'sel' %}";
+                                    {#                            alert(u);#}
+                                    {#                            alert(u+"/"+states);#}
+                                    {#                            document.location.href=u.replace('sel',states);#}
+                                    {#                            $('#googleMapDiv').load(u.replace('sel',states),function(){});#}
+                                    resetZoom(states.toString());
+                                    {#$(window).animate({#}
+                                    {#        scrollTop: $("#jobs").offset().top#}
+                                    {#    }, 'slow');#}
+                                    {#$(window).animate({scrollTop:($('#jobs').offset().top)});#}
+
+
+                                }
+                            }
+                        } ],
+                        {#                        "export" : {#}
+                        {#                            "enabled" : true#}
+                        {#                        }#}
+                    });
+
+
+    var map;
+    var googleMarkers = [];
+    function initialize() {
+        var mapDiv = document.getElementById('map');
+        map = new google.maps.Map(mapDiv, {
+            center: new google.maps.LatLng(37.09024, -95.712891),
+            zoom: 4,
+            mapTypeControlOptions: {
+                style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                position: google.maps.ControlPosition.RIGHT_TOP
+            }
+
+        });
+        google.maps.event.addListenerOnce(map, 'tilesloaded', addMarkers);
+        {#        var mapInfo = document.getElementById('mapInfo');#}
+        {##}
+        {#        {% for domain in domain_names_count %}#}
+        {#            var div = document.createElement('div');#}
+        {#            var imgPath;#}
+        {#            {% with 'images/'|add:domain.domain|add:'.png' as image_static %}#}
+        {#                imgPath= '{% static image_static %}'#}
+        {#            {% endwith %}#}
+        {#            div.innerHTML = '<img src="' + imgPath + '"> '+'{{ domain.domain }}' + '-' + '{{ domain.domainCount }}';#}
+        {#            div.innerHTML = '<img src="' + icon + '"> ' + name;#}
+        {#            mapInfo.appendChild(div);#}
+        {##}
+        {##}
+        {##}
+        {#        {% endfor %}#}
+        {#        map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(mapInfo);#}
+
+        var jobFilter=document.getElementById('jobFilter_dd');
+        map.controls[google.maps.ControlPosition.LEFT_TOP].push(jobFilter);
+    }
+
+    function resetZoom(state){
+
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode( { 'address': state }, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                map.setZoom(7);
+            } else {
+                alert("Could not find location: " + state);
+            }
+        });
+    }
+
+    function addMarkers() {
+
+        {% for job in all_jobs %}
+            var point = new google.maps.LatLng({{job.latitude}},{{job.longitude}});
+            var marker = new google.maps.Marker({
+                position: point,
+                map: map,
+                title: '{{ job.Jobtitle}}',
+                category: '{{ job.domain }}',
+                {% with 'images/'|add:job.domain|add:'.png' as image_static %}
+                    icon:'{% static image_static %}'
+                {% endwith %}
+            });
+            googleMarkers.push(marker);
+            marker['infowindow']  = new google.maps.InfoWindow({
+                content: "<h1>{{job.Jobtitle}}</h1> <br> {{ job.description }}"
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+                $('#newPagePopUp').modal();
+                $('#popBody').load('{% url 'course_recommendation:recommend' job.id  %}',function(){});
+            });
+        {% endfor %}
+    }
+
+
+    function filterMarkers(category) {
+        {#        alert('in function category');#}
+        for (i = 0; i < {{ jobs_count }}; i++) {
+            marker = googleMarkers[i];
+            // If is same category or category not picked
+            if (marker.category.toLowerCase() == category || category.length === 0) {
+
+                marker.setVisible(true);
+            }
+            // Categories don't match
+            else {
+                marker.setVisible(false);
+            }
+        }
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+
+    $("#filterMapsDropDown").change(function () {
+        var end = this.value;
+        {#    alert(end);#}
+        filterMarkers(end.toLowerCase());
+        {#    onchange="filterMarkers(this.value);"#}
+    });
+
+    $('.dropdown-menu a').click(function(e){
+        var name = e.currentTarget;
+        {#        alert(name.getAttribute("data-name"));#}
+        filterMarkers(name.getAttribute("data-name").toLowerCase());
+        e.preventDefault();// prevent the default anchor functionality
+        //Show table
+    });
+
+
+</script>
+
+<!--PieChart-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Domain', 'Number of Jobs'],
+            {% for domain in domain_names_count %}
+                ['{{ domain.domain }}',{{ domain.domainCount }}],
+            {% endfor %}
+        ]);
+        var options = {
+            title: 'Trending Jobs',
+            is3D: true,
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+    }
+</script>
+
+<!--Amcharts Job Trends-->
+<script>
+    var chart = AmCharts.makeChart("chartdivTrendJobs", {
+        "theme": "light",
+        "type": "serial",
+        "startDuration": 10,
+        "dataProvider": [
+            {% for state in statesJobCount %}
+                {
+                    "domain": "{{ state.0 }}",
+                    "visits": {{ state.1 }},
+                },
+            {% endfor %}
+        ],
+        "valueAxes": [{
+            "position": "left",
+            "axisAlpha":0,
+            "gridAlpha":0,
+            "title":"Number of Jobs"
+        }],
+        "graphs": [{
+            "balloonText": "[[category]]: <b>[[value]]</b>",
+            "colorField": "color",
+            "fillAlphas": 0.85,
+            "lineAlpha": 0.1,
+            "type": "column",
+            "topRadius":0.54,
+            "valueField": "visits"
+        }],
+        "depth3D": 40,
+        "angle": 47,
+        "chartCursor": {
+            "categoryBalloonEnabled": false,
+            "cursorAlpha": 0,
+            "zoomable": false
+        },
+        "categoryField": "domain",
+        "categoryAxis": {
+            "gridPosition": "start",
+            "axisAlpha":0,
+            "gridAlpha":0,
+            "title":"States"
+
+        },
+        {#    "export": {#}
+        {#    	"enabled": true#}
+        {#     }#}
+
+    }, 0);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="course recommendation sjsu services information campus navigation uni friend">
+    <meta name="author" content="Satya Keerthi Kotte">
+    <title>Uni Friend- Course Recommendation pop up</title>
+
+    {% load static %}
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/simple-line-icons/css/simple-line-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/device-mockups/device-mockups.min.css' %}">
+
+    <!-- Theme CSS -->
+    <link href="{% static 'css/new-age.min.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="modal-content">
+    <ul class="nav nav-tabs nav-justified">
+        <li class="active"><a href="#tab1" data-toggle="tab" style="line-height: 35px;">Job Info</a></li>
+        <li><a href="#tab2" data-toggle="tab" style="line-height: 35px;">Recommended Courses</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="tab1" class="tab-pane fade in active">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-1" style="align:center; "> <i class="glyphicon glyphicon-briefcase"></i> </div>
+                    <div class="col-md-11">
+                        <label> Job Title: </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                    <div class="col-md-11"> <span> {{ jobs.Jobtitle}}</span> </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1" style="align:center; "> <i class="glyphicon glyphicon-globe"></i> </div>
+                    <div class="col-md-5">
+                        <label> Job Location: </label>
+                    </div>
+                    <div class="col-md-1" style="align:center; "> <i class="glyphicon glyphicon-qrcode"></i> </div>
+                    <div class="col-md-5">
+                        <label> Employer: </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                    <div class="col-md-5"> <span> {{ jobs.location}}</span> </div>
+                    <div class="col-md-1">&nbsp;</div>
+                    <div class="col-md-5"> <span> {{ jobs.company}}</span> </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1" style="align:center; "> <i class="glyphicon glyphicon-paperclip"></i> </div>
+                    <div class="col-md-11">
+                        <label> Job Description: </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                    <div class="col-md-11"> <span>{{ jobs.description }} </span> </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1" style="align:center; "> <i class="glyphicon glyphicon-link"></i> </div>
+                    <div class="col-md-11">
+                        <a href="{{ jobs.url }}" target="_blank"> Know More/Apply </a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div id="tab2" class="tab-pane fade">
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-1" style="align:center; "> <i class="glyphicon glyphicon-education"></i> </div>
+                    <div class="col-md-11">
+                        <label> Program of Study: </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1" style="align:center; "> &nbsp;</div>
+                    <div class="col-md-11">
+                        <form>
+                            <label class="radio-inline">
+                                <input type="radio" name="optProg" value="undergrad">Undergraduate
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optProg" value="grad">Graduate
+                            </label>
+                        </form>
+                    </div>
+                </div>
+            <div id="selectedProg" style="display: none">all</div>
+                <div class="row">
+                    <div class="col-md-1" style="align:center; "> <i class="glyphicon glyphicon-book"></i> </div>
+                    <div class="col-md-11">
+                        <label> Courses List: </label>
+                    </div>
+                </div>
+                {% for course in filter_courses %}
+{#                    {% if course.0.program == 'undergrad' %}#}
+{#{% if course.0.program == 'grad' %}#}
+
+                    <div class="row">
+                        <div class="col-md-1">&nbsp;</div>
+                        <div class="col-md-11">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" placeholder="Already enrolled" value="">
+                                    {{ course.0.number }}</label>
+                                <div class="col-md-11"> <span>
+                                    <b>Course Name: </b> {{ course.0.name }}<br>
+                                    <b>Course Description: </b>{{ course.0.description }}<br>
+                                    <b>Department: </b>{{ course.0.department }}<br>
+                                    <b>Program: </b>{{ course.0.program }}<br>
+                                    <a href="{{ course.0.url }}" target="_blank">{{ course.0.number }} Course Link</a>  </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {#{% endif %}#}
+                    {% empty %}
+    <li>Sorry, no related courses available!</li>
+
+                {% endfor %}
+            </div>
+            <aside> <span class="alert-info">Please check the checkbox if you have already enrolled to the course.</span> </aside>
+            <form role="form" id="emailForm" style="display:none" >
+                <div class="form-group">
+                    <br>
+                    <h4>Plese input your Email-ID for further recommendations!</h4>
+                    <div class=" row left-inner-addon">
+                        <div class="col-md-1">
+                            <i class="glyphicon glyphicon-envelope"></i></div>
+                        <div class="col-md-11">
+                            <input type="text" class="form-control" id="email" placeholder="Email">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success btn-block"> Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+<script>
+    $(':checkbox').change(function() {
+        $('#emailForm').css('display','block');
+    });
+    $(document).on('change', 'input:radio', function (event) {
+        document.getElementById('selectedProg').innerHTML= this.value.toString();
+
+
+
+    });
+</script>
+</html>
